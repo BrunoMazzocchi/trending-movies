@@ -10,7 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="MovieTrending" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="xgE-YB-BRI" id="Sgo-Ia-V79"/>
+                <outlet property="activityIndicator" destination="Deq-Cu-NCB" id="i0r-KW-C46"/>
+                <outlet property="tableView" destination="xgE-YB-BRI" id="b3g-U3-HEA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,13 +24,19 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Deq-Cu-NCB">
+                    <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                    <color key="color" systemColor="systemGray2Color"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="xgE-YB-BRI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Xa4-nt-iWV"/>
+                <constraint firstItem="Deq-Cu-NCB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="e31-39-nCU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xgE-YB-BRI" secondAttribute="trailing" id="jgN-Km-jdz"/>
                 <constraint firstAttribute="bottom" secondItem="xgE-YB-BRI" secondAttribute="bottom" id="nUL-3a-mUv"/>
+                <constraint firstItem="Deq-Cu-NCB" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="pAU-KZ-XZT"/>
                 <constraint firstItem="xgE-YB-BRI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qBz-pV-2Bo"/>
             </constraints>
             <point key="canvasLocation" x="-11.450381679389313" y="19.718309859154932"/>
@@ -38,6 +45,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

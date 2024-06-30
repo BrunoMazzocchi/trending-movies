@@ -9,35 +9,57 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    // IBoutlets:
-    
+    //IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    // ViewModel
+    
+    //ViewModel
     var viewModel: MainViewModel = MainViewModel()
+    
+    //Variables:
+    var moviesDataSource: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         configView()
+        bindViewModel()
     }
     
     func configView() {
-        // Do any additional setup after loading the view.
-        self.title = "Main view"
+        self.title = "Main View"
         self.view.backgroundColor = .red
         
-        setUpTableView()
+        self.setupTableView()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.getData()
     }
-    */
-
+    
+    func bindViewModel() {
+        viewModel.isLoadingData.bind { [weak self] isLoading in
+            guard let isLoading = isLoading else {
+                return
+            }
+            DispatchQueue.main.async {
+                if isLoading {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
+            }
+        }
+        
+        viewModel.movies.bind { [weak self] movies in
+            guard let self = self,
+                  let movies = movies else {
+                return
+            }
+            self.moviesDataSource = movies
+            self.reloadTableView()
+        }
+    }
 }
