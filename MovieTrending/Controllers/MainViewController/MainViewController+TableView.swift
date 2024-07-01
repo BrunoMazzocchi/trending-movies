@@ -25,7 +25,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func registerCells() {
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.register(MainMovieCell.register(), forCellReuseIdentifier: MainMovieCell.identifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,8 +37,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = viewModel.getMovieTitle(moviesDataSource[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainMovieCell.identifier, for: indexPath) as? MainMovieCell else {
+            return UITableViewCell()
+        }
+        cell.setUpCell(viewModel: moviesDataSource[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
 }
